@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    /* Estilos para os interruptores */
+    #teste {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 90%;
+        margin: 0 auto;
+        margin-bottom: 20px;
+    }
+
+    .section {
+        display: none;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin-top: 20px;
+        width: 100%; /* Garante que a seção ocupe a largura total da página */
+    }
+
+    .section.active {
+        display: block;
+        opacity: 1;
+    }
+
+    .pf {
+        background-color: white;
+        padding: 10px 20px;
+        border-radius: 10%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%; /* Mantido */
+        max-width: 120px; /* Mantido */
+        margin: 5px; /* Mantido */
+    }
+
+    .backgroundBotoes {
+        border-radius: 67px;
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        font-weight: 600;
+    }
+
+    .switch {
+        width: 40px;
+        height: 24px;
+        display: inline-block;
+        cursor: pointer;
+        position: relative;
+    }
+
+    .switch .slider {
+        position: absolute;
+        inset: 0;
+        background: #ccc;
+        border-radius: 24px;
+        transition: all 400ms ease;
+    }
+
+    .switch input {
+        display: none;
+    }
+
+    .switch .slider::before {
+        content: "";
+        position: absolute;
+        height: 18px;
+        width: 18px;
+        border-radius: 50%;
+        left: 3px;
+        bottom: 3px;
+        background: #fff;
+        transition: all 400ms ease;
+    }
+
+    .switch input:checked + .slider {
+        background: #34c759;
+    }
+
+    .switch input:checked + .slider::before {
+        transform: translateX(16px);
+    }
+
+    #notificacao {
+        display: flex;
+        align-items: center;
+        background-color: #D9D9D9;
+        width: 70%; /* Ajuste conforme necessário */
+        max-width: 1000px;
+        margin: auto;
+        height: auto;
+        padding: 15px 20px;
+        border-radius: 20px;
+        flex-direction: row;
+        gap: 15px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+    #iconeNotificacao {
+        width: 50px;
+        height: auto;
+    }
+
+    .texto {
+        color: black;
+        align-self: flex-start;
+        text-align: left;
+        font-size: 12px;
+        font-weight: 400;
+        font-family: "SF Pro Rounded", Sans-serif;
+        line-height: 1.5;
+    }
+
+    #textoMenor {
+        font-size: 20px;
+    }
+
+    #tituloNotificacao {
+        font-weight: 900;
+        font-size: 25px;
+    }
+
+    @media (max-width: 600px) {
+        #notificacao {
+            width: 90%;
+            flex-direction: column;
+            padding: 10px;
+            gap: 10px;
+        }
+
+        img {
+            width: 40px;
+        }
+
+        .texto {
+            text-align: left;
+            font-size: 14px;
+        }
+
+        #tituloNotificacao {
+            font-size: 16px;
+        }
+    }
+</style>
+<script>
+    const handleSwitch = (switchNumber) => {
+        const selectedSection = document.getElementById('section' + switchNumber);
+        const switchElement = document.getElementById('switch-' + switchNumber);
+
+        // Desliga todos os outros interruptores e esconde as respectivas seções
+        for (let i = 1; i <= 2; i++) {
+            if (i !== switchNumber) {
+                const otherSwitch = document.getElementById('switch-' + i);
+                const otherSection = document.getElementById('section' + i);
+
+                otherSwitch.checked = false;
+                otherSection.classList.remove('active');
+                otherSection.style.display = 'none';
+            }
+        }
+
+        // Se o botão for desligado (unchecked), esconde a seção correspondente
+        if (!switchElement.checked) {
+            selectedSection.classList.remove('active');
+            selectedSection.style.display = 'none';
+        } else {
+            // Caso contrário, mostra a seção correspondente
+            selectedSection.style.display = 'block';
+            setTimeout(() => {
+                selectedSection.classList.add('active');
+            }, 10);
+        }
+    };
+</script>
+<body>
+    <!-- Contêiner dos interruptores -->
+    <div id="teste">
+        <div class="pf">
+            <div class="backgroundBotoes">
+                DESIGN
+                <label for="switch-1" class="switch">
+                    <input type="checkbox" id="switch-1" onclick="handleSwitch(1)" />
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="pf">
+            <div class="backgroundBotoes">
+                PROGRAMAÇÃO
+                <label for="switch-2" class="switch">
+                    <input type="checkbox" id="switch-2" onclick="handleSwitch(2)" />
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Seções que aparecem abaixo -->
+    <div id="section1" class="section">
+        <div id="notificacao">
+          <div><img src="http://portfolio.local/wp-content/uploads/2024/09/Ganem-Studio-1-1.png" alt="Memoji Sorrindo" id="iconeNotificacao"></div>
+          <div class="texto">
+            <span id="tituloNotificacao">DOMUS (clique para acessar o design!)</span><br>Protótipo do site domus.pucpr.br <b>(ainda não está no ar)</b> para o software DOMUS
+          </div>
+        </div>
+    </div>
+
+    <div id="section2" class="section">
+        <a href="https://github.com/ArthurErzinger/ScriptDatasetOutput" style="text-decoration: none; color: inherit;">
+        <div id="notificacao">
+          <div><img src="http://portfolio.local/wp-content/uploads/2024/09/S.png" id="iconeNotificacao"></div>
+          <div class="texto" id="textoMenor">
+            <span id="tituloNotificacao">Script Output Domus (Aperte aqui para ver!)</span><br>
+            Script escrito em python para organização de dados output de co-simulações domus, está ajudando diversos alunos de mestrado de engenharia da pucpr
+          </div>
+        </div>
+        </a>
+        <a href="https://github.com/ArthurErzinger/Python" style="text-decoration: none; color: inherit;">
+        <div id="notificacao">
+          <div><img src="http://portfolio.local/wp-content/uploads/2024/09/python.png" id="iconeNotificacao"></div>
+          <div class="texto" id="textoMenor">
+            <span id="tituloNotificacao">Códigos de Treino Python (Aperte aqui para ver!)</span><br>
+            Códigos para treinar o básico de python incluindo algoritmos, strings e a biblioteca de automação pyautogui
+          </div>
+        </div>
+        </a>
+        <div id="notificacao">
+          <div><img src="http://portfolio.local/wp-content/uploads/2024/09/wine.png" id="wine"></div>
+          <div class="texto" id="textoMenor">
+            <span id="tituloNotificacao">Documentação Wine Ubuntu Domus</span><br>
+            Documentação para uso do software domus no Linux Ubuntu
+          </div>
+        </div>
+
+        <div id="notificacao">
+          <div><img src="http://portfolio.local/wp-content/uploads/2024/09/pucpr.png" id="iconeNotificacao"></div>
+          <div class="texto" id="textoMenor">
+            <span id="tituloNotificacao">Monitoria de matéria de programação na PUCPR</span><br>
+            Monitoria para oferecer auxílio aos alunos da matéria de raciocínio computacional na programação, conteúdo focado em algoritmos e lógica básica da linguagem C
+          </div>
+        </div>
+    </div>
+</body>
+</html>

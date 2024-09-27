@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #notificacao {
+            display: flex;
+            align-items: center;
+            background-color: #D9D9D9;
+            width: 60%; /* Reduzido para 60% */
+            max-width: 400px; /* Limite máximo para telas grandes */
+            margin: auto;
+            height: auto;
+            padding: 15px 20px; /* Padding ajustado */
+            border-radius: 20px;
+            flex-direction: row;
+            gap: 15px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra leve */
+        }
+
+        img {
+            width: 50px; /* Tamanho fixo mais compacto */
+            height: auto;
+        }
+
+        .texto {
+            align-self: flex-start;
+            font-size: 12px; /* Fonte menor */
+            font-weight: 400;
+            font-family: "SF Pro Rounded", Sans-serif;
+            line-height: 1.5; /* Ajuste de espaçamento */
+        }
+
+        #tituloNotificacao {
+            font-weight: 900;
+            font-size: 14px; /* Ajuste do título */
+        }
+
+        /* Estilos para telas menores (celulares) */
+        @media (max-width: 600px) {
+            #notificacao {
+                width: 80%; /* Menor largura para celulares */
+                flex-direction: row; /* Conteúdo em coluna para telas pequenas */
+                padding: 10px;
+                gap: 10px;
+            }
+
+            img {
+                width: 60px; /* Um pouco maior em telas pequenas */
+            }
+
+            .texto {
+                /* text-align: center; Centraliza texto no celular */
+                font-size: 14px; /* Ajuste de fonte para legibilidade */
+            }
+
+            #tituloNotificacao {
+                font-size: 16px; /* Tamanho do título para celulares */
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div id="notificacao">
+        <div><img src="memoji-sorrindo.png" alt="Memoji Sorrindo"></div>
+        <div class="texto"><span id="tituloNotificacao">Arthur Erzinger de Lima</span><br>Dev Web Freelancer<br>Engenharia da computação PUCPR</div>
+    </div>
+    <div id="notificacao">
+        <div><img src="S.png"></div>
+        <div class="texto"><span id="tituloNotificacao">Script Output Domus</span><br>Script escrito em python para organização de dados output de co-simulações domus, está ajudando diversos alunos de mestrado de engenharia da pucpr</div>
+    </div>
+    <div id="notificacao">
+        <div><img src="memoji-sorrindo.png" alt="Memoji Sorrindo"></div>
+        <div class="texto"><span id="tituloNotificacao">Arthur Erzinger de Lima</span><br>Dev Web Freelancer<br>Engenharia da computação PUCPR</div>
+    </div>
+</body>
+</html>
